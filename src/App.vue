@@ -1,47 +1,42 @@
 <template>
   <div id="App" class="container">
     <h1 class="text-center">TODO APP</h1>
-    <input
-      v-model="todoText"
-      type="text"
-      class="w-100 p-3"
-      placeholder="Type todo"
-      @keyup.enter="addTodo"
-      ref="answer"
+   <CompletedTodo  />
+    <AddTodo 
+      @add-todo="addTodo"
+    /> 
+    <hr />
+    <TodoList 
+      @clicked-delete="deletetodo" 
       @toggle-checkbox="toggleCheckbox"
     />
-    <hr />
-    <div class="checkname">
-      <TodoApp v-for="todo 
-      in todos" 
-      :key="todo.id" 
-      :todo="todo"
-      @clicked-delete="deletetodo" 
-    />
-    </div>
   </div>
 </template>
 
 <script>
-import TodoApp from "@/components/todo.vue";
+import CompletedTodo from '@/components/CompletedTodo.vue'
+import AddTodo from '@/components/AddTodo.vue'
+import TodoList from '@/components/TodoList.vue'
 export default {
   components: {
-    TodoApp,
+    TodoList,
+    AddTodo,
+    CompletedTodo,
   },
   data() {
     return {
       todoText: "",
-      todos: [
-        { id: 1, text: "play game", checked: false },
-        { id: 2, text: "hello coding", checked: false },
-      ],
+      // todos: [
+      //   { id: 1, text: "play game", checked: false },
+      //   { id: 2, text: "hello coding", checked: false },
+      // ],
     };
   },
   methods: {
-    addTodo(e) {
+    addTodo(value) {
       this.todos.push({
         id: Math.random(),
-        text: e.target.value,
+        text: value,
         checked: false,
       });
       this.todoText = "";
