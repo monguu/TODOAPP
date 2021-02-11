@@ -1,16 +1,23 @@
 <template>
   <div id="App" class="container">
-    <h1 class="text-center">ToDo App</h1>
+    <h1 class="text-center">TODO APP</h1>
     <input
       v-model="todoText"
       type="text"
-      class="w-100 p-2"
+      class="w-100 p-3"
       placeholder="Type todo"
       @keyup.enter="addTodo"
       ref="answer"
+      @toggle-checkbox="toggleCheckbox"
     />
-    <div>
-      <TodoApp v-for="todo in todos" :key="todo.id" :todo="todo" />
+    <hr />
+    <div class="checkname">
+      <TodoApp v-for="todo 
+      in todos" 
+      :key="todo.id" 
+      :todo="todo"
+      @clicked-delete="deletetodo" 
+    />
     </div>
   </div>
 </template>
@@ -30,7 +37,6 @@ export default {
       ],
     };
   },
-
   methods: {
     addTodo(e) {
       this.todos.push({
@@ -40,9 +46,33 @@ export default {
       });
       this.todoText = "";
     },
+    toggleCheckbox({id, checked}) {
+      const index = this.todos.findIndex(todo => {
+        return todo.id === id;
+      });
+      this.todos[index].checked = checked;
+    },
+    deletetodo(id) {
+      const index = this.todos.findIndex(todo => {
+        return todo.id === id;
+      });
+      this.todos.splice(index, 1);
+       console.log("hi")
+    },
   },
 };
 </script>
 
 <style>
+
+.checkname {
+  font-weight: bolder;
+  font-size: 20px;
+
+}
+#App {
+  font-family: 'Hammersmith One', sans-serif;
+  font-family: 'Yeon Sung', cursive;
+}
+
 </style>
