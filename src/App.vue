@@ -2,14 +2,9 @@
   <div id="App" class="container">
     <h1 class="text-center">TODO APP</h1>
    <CompletedTodo  />
-    <AddTodo 
-      @add-todo="addTodo"
-    /> 
+    <AddTodo /> 
     <hr />
-    <TodoList 
-      @clicked-delete="deletetodo" 
-      @toggle-checkbox="toggleCheckbox"
-    />
+    <TodoList />
   </div>
 </template>
 
@@ -33,27 +28,27 @@ export default {
     };
   },
   methods: {
-    addTodo(value) {
-      this.todos.push({
-        id: Math.random(),
-        text: value,
-        checked: false,
-      });
-      this.todoText = "";
-    },
-    toggleCheckbox({id, checked}) {
-      const index = this.todos.findIndex(todo => {
-        return todo.id === id;
-      });
-      this.todos[index].checked = checked;
-    },
-    deletetodo(id) {
-      const index = this.todos.findIndex(todo => {
-        return todo.id === id;
-      });
-      this.todos.splice(index, 1);
-       console.log("hi")
-    },
+    // addTodo(value) {
+    //   this.todos.push({
+    //     id: Math.random(),
+    //     text: value,
+    //     checked: false,
+    //   });
+    //   this.todoText = "";
+    // },
+    // toggleCheckbox({id, checked}) {
+    //   const index = this.todos.findIndex(todo => {
+    //     return todo.id === id;
+    //   });
+    //   this.todos[index].checked = checked;
+    // },
+    // deletetodo(id) {
+    //   const index = this.todos.findIndex(todo => {
+    //     return todo.id === id;
+    //   });
+    //   this.todos.splice(index, 1);
+    //    console.log("hi")
+    // },
   },
 };
 </script>

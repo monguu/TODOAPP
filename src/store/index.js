@@ -6,11 +6,44 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     todos: [
-      { id: 1, text: "play game", checked: false },
-      { id: 2, text: "hello coding", checked: false },
+      { id: 1, text: "create Text", checked: false },
+      { id: 2, text: "working Todo", checked: false },
     ],
   },
-  mutation: {},
-  accept: {},
-  getters: {},
+  mutations: {
+    ADD_TODO(state, value) {
+      state.todos.push({
+        id: Math.random(),
+        text: value,
+        checked: false,
+      });
+      console.log("hi");
+    },
+    TOGGLE_TODO(state, { id, checked }) {
+      const index = state.todos.findIndex((todo) => {
+        return todo.id === id;
+      });
+      state.todos[index].checked = checked;
+    },
+    DELETE_TODO(state, todoid) {
+      const index = state.todos.findIndex((todo) => {
+        return todo.id === todoid;
+      });
+      state.todos.splice(index, 1);
+      console.log("hi");
+    },
+  },
+  actions: {
+    addTodo({ commit }, value) {
+      setTimeout(() => {
+        commit("ADD_TODO", value);
+      }, 500);
+      // commit("ADD_TODO", value);
+    },
+  },
+  getters: {
+    numberCompletedTodo: (state) => {
+      return state.todos.filter((todo) => todo.checked).length;
+    },
+  },
 });

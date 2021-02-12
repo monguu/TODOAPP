@@ -1,7 +1,8 @@
 <template>
   <div class="mt-3 mb-2 d-flex">
     <div>
-      <input type="checkbox" :checked="todo.checked" 
+      <input type="checkbox" 
+      :checked="todo.checked" 
       @change="toggleCheckbox"/>
     </div>
     
@@ -27,17 +28,21 @@ export default {
   },
   methods: {
     toggleCheckbox (e) {
-      this.$emit('toggle-checkbox', {
-        id: this.todo.id,
-        checked:e.target.checked, 
+      this.$store.commit("TOGGLE_TODO", {
+          id: this.todo.id,
+          checked:e.target.checked, 
       })
+      // this.$emit('toggle-checkbox', {
+      //   id: this.todo.id,
+      //   checked:e.target.checked, 
+      // })
     },
     clickdelete () {
-      this.$emit('clicked-delete',
-        this.todo.id,
-        console.log("hi")
-      )
+      this.$store.commit("DELETE_TODO", this.todo.id)
+      // this.$emit('clicked-delete',
+      //   this.todo.id,
+      console.log("hi")
+      }
     }
-  }
-};
+  };
 </script>

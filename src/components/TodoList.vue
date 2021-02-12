@@ -11,17 +11,20 @@
 </div>
 </template>
 <script>
+// import { mapState } from 'vuex';
 import TodoApp from "@/components/todo.vue";
 export default {
     components: {
         TodoApp,
     },
     computed: {
+        // ...mapState(['todos']),
         todos() {
             return this.$store.state.todos;
         }
         },
     methods: {
+        // ...mapActions([]),
         toggleCheckbox(value) {
             this.$emit('toggle-checkbox', value)
         },

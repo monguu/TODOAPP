@@ -8,11 +8,11 @@ export default {
     
     
     computed: {
-        todos() {
-            return this.$store.state.todos
-        },
+        // todos() {
+        //     return this.$store.state.todos
+        // },
         numberCompletedTodo () {
-            return this.todos.filter(todo => todo.checked).length; 
+            return this.$store.getters.numberCompletedTodo;
         },
         },
 }
